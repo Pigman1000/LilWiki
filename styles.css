@@ -67,7 +67,7 @@ body.dark-mode .dark-mode-toggle button {
     max-width: 600px;
     width: 100%;
     margin: 0 auto;
-    height: 220px;
+    height: auto; /* Adjust height for better layout */
     box-sizing: border-box;
     transition: background 0.3s, color 0.3s;
 }
@@ -98,6 +98,7 @@ body.dark-mode h1 {
 /* Search box styling */
 .search-box {
     display: flex;
+    flex-direction: column; /* Stack the input and button vertically */
     gap: 8px;
     background: #ffffff;
     padding: 0.4rem;
@@ -194,53 +195,72 @@ body.dark-mode .content-module {
 .loading {
     text-align: center;
     padding: 1.5rem;
-    color: white;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+/* Light mode loading screen */
+body .loading {
+    background:#ffffff; /* Light background for light mode loading */
+    color: #ffffff;
+}
+
+/* Dark mode loading screen */
+body.dark-mode .loading {
+    background:#353535; /* Light background for dark mode loading */
+    color: #353535;
 }
 
 .error {
-    background: rgba(255, 255, 255, 0.95);
-    color: #d63031;
-    padding: 0.8rem;
-    border-radius: 18px;
     text-align: center;
-    font-weight: 600;
+    padding: 1.5rem;
+    color: #e74c3c;
+    font-size: 1rem;
+    font-weight: bold;
+    background: rgba(255, 0, 0, 0.2);
+    border-radius: 10px;
 }
 
-/* Link styles */
+/* Links styling */
 a {
-    color: #007bff; /* Default blue color */
+    color: #007bff; /* Default blue color for light mode */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-/* Dark mode link styles */
+/* Dark mode link styling */
 body.dark-mode a {
-    color: #00bcd4; /* Brighter cyan for links */
+    color: #32CD32; /* Green color for links in dark mode */
 }
 
 body.dark-mode a:hover {
-    color: #ff9800; /* Orange for hover state */
+    color: #90EE90; /* Lighter green on hover */
+    text-decoration: underline;
 }
 
-/* Media query for responsive layout */
+/* Prevent text selection in the search box */
+.search-box input:focus {
+    outline: none;
+    border: 2px solid #007bff;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
-    body, .app-container {
+    .app-container {
         padding: 1rem;
     }
 
-    .search-box {
-        flex-direction: column;
-        align-items: stretch;
+    .search-module {
+        padding: 1rem;
+        height: auto;
     }
 
-    input[type="text"], button {
-        width: 100%; /* Ensure inputs and buttons fill their container */
-        box-sizing: border-box;
+    .search-box input[type="text"] {
+        padding: 8px 12px;
     }
 
-    .results-module {
-        grid-template-columns: 1fr; /* Stack result items vertically on small screens */
+    button {
+        padding: 8px 12px;
     }
 }
