@@ -108,12 +108,15 @@ const ContentModule = {
             const data = await response.json();
             const page = data.query.pages[pageid];
 
+            // Clean and format the content before displaying
+            const formattedContent = this.formatContent(page.extract);
+
             ResultsModule.resultsContainer.innerHTML = `
                 <div class="content-module">
                     <button class="back-button" onclick="ContentModule.goBack()">Back</button>
                     <h2>${title}</h2>
                     <div class="content-text">
-                        <p>${page.extract}</p>
+                        <p>${formattedContent}</p>
                     </div>
                     <a href="https://en.wikipedia.org/?curid=${pageid}" target="_blank" class="read-full-article">Read full article</a>
                 </div>
@@ -126,6 +129,32 @@ const ContentModule = {
 
     goBack() {
         ResultsModule.performSearch(ResultsModule.lastSearchQuery);
+    },
+
+    formatContent(content) {
+        // Step 1: Replace words inside brackets with bold italics
+        content = content.replace(/(.*?)/g, '<strong><em>$1</em></strong>'); // [text] -> bold italics
+
+        // Step 2: Replace numbers with bold
+        content = content.replace(/\b(\d+)\b/g, '<strong>$1</strong>'); // Numbers -> bold
+
+        // Step 3: Replace text inside quotes with bold italics
+        content = content.replace(/"(.*?)"/g, '<strong><em>$1</em></strong>'); // "text" -> bold italics
+
+        // Step 4: Split content into sentences
+        let sentences = content.split('.').map(sentence => sentence.trim()).filter(sentence => sentence.length > 0);
+
+        // Step 5: Randomly insert paragraphs for sentences starting with "The"
+        sentences = sentences.map(sentence => {
+            if (sentence.startsWith("The") && Math.random() < 0.5) {
+                return `<p>${sentence}.</p>`;
+            } else {
+                return sentence + '.';
+            }
+        });
+
+        // Step 6: Combine sentences into a formatted string
+        return sentences.join(' ');
     }
 };
 
@@ -144,6 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <p>This is a simple Wiki application where content is fetched directly from Wikipedia using the Wikipedia API. You can search for any topic, and we will provide relevant Wikipedia articles for you.</p>
         <p>All the content shown here is sourced from Wikipedia, and this tool serves as a lightweight, quick access point for finding information.</p>
         <p>Visit the <a href="https://en.wikipedia.org/" target="_blank">Wikipedia</a> for more information.</p>
-        <p>Contact me: <a href="mailto:pheklom@gmail.com">pheklom@gmail.com</a></p>
+        <p>Contact me: <a href="mailto:pheklo@gmail.com">pheklom@gmail.com</a></p>
     `;
 });
