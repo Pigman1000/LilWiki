@@ -3,7 +3,7 @@ const SearchModule = {
         this.searchInput = document.getElementById('searchQuery');
         this.searchButton = document.getElementById('searchButton');
         this.resultsContainer = document.getElementById('resultsContainer');
-        this.toggleButton = document.getElementById('darkModeToggle');  // Updated ID here
+        this.toggleButton = document.getElementById('darkModeToggle'); // Updated ID here
         this.bindEvents();
     },
 
@@ -12,12 +12,14 @@ const SearchModule = {
         this.searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 ResultsModule.performSearch(this.searchInput.value);
+                this.clearSearchInput(); // Clear input after search
             }
         });
 
         // Handle Search button click
         this.searchButton.addEventListener('click', () => {
             ResultsModule.performSearch(this.searchInput.value);
+            this.clearSearchInput(); // Clear input after search
         });
 
         // Handle dark mode toggle button click
@@ -26,11 +28,16 @@ const SearchModule = {
         });
     },
 
+    // Clear search input
+    clearSearchInput() {
+        this.searchInput.value = '';
+    },
+
     // Switch between light and dark mode
     toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
         const currentMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-        localStorage.setItem('mode', currentMode);  // Save the mode preference
+        localStorage.setItem('mode', currentMode); // Save the mode preference
     }
 };
 
@@ -137,6 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <p>This is a simple Wiki application where content is fetched directly from Wikipedia using the Wikipedia API. You can search for any topic, and we will provide relevant Wikipedia articles for you.</p>
         <p>All the content shown here is sourced from Wikipedia, and this tool serves as a lightweight, quick access point for finding information.</p>
         <p>Visit the <a href="https://en.wikipedia.org/" target="_blank">Wikipedia</a> for more information.</p>
-        <p>Contact me: <a href="mailto:pheklom@gmail.com">pheklom@gmail.com</a></p>
+        <p>Contact me: <a href="mailto:your-pheklom@gmail.com">pheklom@gmail.com</a></p>
     `;
 });
