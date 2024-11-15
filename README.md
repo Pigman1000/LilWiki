@@ -28,7 +28,7 @@ All files are located in the root folder:
    Clone this repository to your local machine using the following command:
 
    ```bash
-   git clone https://github.com/your-username/wikipedia-search-integration.git
+   git clone https://github.com/Pitman1000/lilwiki.git
 
 2. Open the index.html File:
 After cloning, open the index.html file in your web browser.
