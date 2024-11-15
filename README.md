@@ -1,4 +1,4 @@
-# Wikipedia Search Integration
+# LilWiki
 
 This project is a simple web application that allows users to search for Wikipedia articles and view the results directly on the page. It uses the Wikipedia API to fetch search results and their summaries, providing users with an interactive experience without leaving the website.
 
@@ -7,7 +7,7 @@ This project is a simple web application that allows users to search for Wikiped
 - Search for Wikipedia articles using a search bar.
 - Display article titles, short snippets, and detailed extracts (summaries) from Wikipedia.
 - Toggle dark mode for a better user experience.
-- No redirection to Wikipedia, results are shown within the site itself.
+- Redirection to Wikipedia, results are shown within the site with links to the full article.
 
 ## Technologies Used
 
