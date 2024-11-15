@@ -2,8 +2,8 @@ const SearchModule = {
     init() {
         this.searchInput = document.getElementById('searchQuery');
         this.searchButton = document.getElementById('searchButton');
-        this.aboutLink = document.getElementById('aboutLink');  // Added reference to the About link
         this.resultsContainer = document.getElementById('resultsContainer');
+        this.toggleButton = document.getElementById('darkModeToggle');  // Updated ID here
         this.bindEvents();
     },
 
@@ -20,19 +20,17 @@ const SearchModule = {
             ResultsModule.performSearch(this.searchInput.value);
         });
 
-        // Handle About link click
-        this.aboutLink.addEventListener('click', (e) => {
-            e.preventDefault();  // Prevent the default behavior of the link
-            this.showAboutPage();
+        // Handle dark mode toggle button click
+        this.toggleButton.addEventListener('click', () => {
+            this.toggleDarkMode();
         });
     },
 
-    showAboutPage() {
-        this.resultsContainer.innerHTML = `
-            <h2>About Simple Wiki</h2>
-            <p>This is a simple Wiki application where content is fetched directly from Wikipedia using the Wikipedia API. You can search for any topic, and we will provide relevant Wikipedia articles for you.</p>
-            <p>All the content shown here is sourced from Wikipedia, and this tool serves as a lightweight, quick access point for finding information.</p>
-        `;
+    // Switch between light and dark mode
+    toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const currentMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('mode', currentMode);  // Save the mode preference
     }
 };
 
@@ -124,6 +122,21 @@ const ContentModule = {
     }
 };
 
+// Ensure the last mode preference is loaded on page load
 document.addEventListener('DOMContentLoaded', () => {
     SearchModule.init();
+
+    const savedMode = localStorage.getItem('mode');
+    if (savedMode === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Add default About page content
+    ResultsModule.resultsContainer.innerHTML = `
+        <h2>About SmolWiki</h2>
+        <p>This is a simple Wiki application where content is fetched directly from Wikipedia using the Wikipedia API. You can search for any topic, and we will provide relevant Wikipedia articles for you.</p>
+        <p>All the content shown here is sourced from Wikipedia, and this tool serves as a lightweight, quick access point for finding information.</p>
+        <p>Visit the <a href="https://en.wikipedia.org/" target="_blank">Wikipedia</a> for more information.</p>
+        <p>Contact me: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+    `;
 });
