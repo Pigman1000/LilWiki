@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add default About page content
     ResultsModule.resultsContainer.innerHTML = `
-        <h2>About SmolWiki</h2>
+        <h2>About LilWiki</h2>
         <p>This is a simple Wiki application where content is fetched directly from Wikipedia using the Wikipedia API. You can search for any topic, and we will provide relevant Wikipedia articles for you.</p>
         <p>All the content shown here is sourced from Wikipedia, and this tool serves as a lightweight, quick access point for finding information.</p>
         <p>Visit the <a href="https://en.wikipedia.org/" target="_blank">Wikipedia</a> for more information.</p>
