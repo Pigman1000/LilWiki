@@ -144,6 +144,7 @@ body.dark-mode button:hover {
     display: grid;
     gap: 0.8rem; 
     box-sizing: border-box;
+    overflow: hidden; /* Prevent overflow of content */
 }
 
 /* Dark mode styles for result items */
@@ -151,6 +152,9 @@ body.dark-mode .result-item {
     background: #444444;  /* Dark background for results in dark mode */
     color: #f4f1e1;
     border: 1px solid #7d6f55; /* Lighter sepia border for results */
+    padding: 1rem;  /* Add padding to ensure content is inside the item */
+    box-sizing: border-box; /* Ensure box sizing doesn't cause overflow */
+    overflow: hidden; /* Prevent overflow from the text or elements */
 }
 
 /* Content module */
