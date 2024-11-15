@@ -1,7 +1,7 @@
 /* Body styling - Prevent horizontal scroll */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #ffffff;  /* White background for light mode */
+    background: #ffffff; /* White background for light mode */
     min-height: 100vh;
     line-height: 1.6;
     color: #2d3436;
@@ -9,10 +9,10 @@ body {
     margin: 0;
 }
 
-/* Dark mode styles - Softer Sepia toned */
+/* Dark mode styles */
 body.dark-mode {
-    background: #2d3436;  /* Dark background for body */
-    color: #f4f1e1;  /* Lighter, off-white text color for better contrast */
+    background: linear-gradient(180deg, #111111, #1a1a1a); /* Subtle gradient for depth */
+    color: #f4f1e1; /* Off-white text for better contrast */
 }
 
 /* Dark Mode Toggle button */
@@ -24,16 +24,24 @@ body.dark-mode {
 }
 
 .dark-mode-toggle button {
-    background: transparent;
+    background: #ffffff; /* White background for light mode */
     border: none;
     font-size: 1.5rem;
-    color: #f4f1e1;
+    color: #000000; /* Black text for light mode */
     cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 20px;
     transition: 0.3s ease;
 }
 
+body.dark-mode .dark-mode-toggle button {
+    background: #353535; /* Black background for dark mode */
+    color: #ffffff; /* White text for dark mode */
+}
+
 .dark-mode-toggle button:hover {
-    color: #ff6f61; /* A subtle red on hover */
+    background: #555555; /* Lighter dark hover effect */
+    color: #ff6f61; /* Red text for hover in both modes */
 }
 
 /* Main app container */
@@ -43,7 +51,7 @@ body.dark-mode {
     flex-direction: column;
     padding: 1.5rem;
     gap: 1.5rem;
-    background: rgba(255, 255, 255, 0.1);  /* Slight dark tone for blending in light mode */
+    background: rgba(255, 255, 255, 0.1); /* Light tone for blending in light mode */
     backdrop-filter: blur(10px);
     overflow-x: hidden;
     box-sizing: border-box;
@@ -52,137 +60,149 @@ body.dark-mode {
 /* Search module styling */
 .search-module {
     text-align: center;
-    padding: 1rem 1.5rem; 
-    background: rgba(255, 255, 255, 0.95);  /* White background in light mode */
-    border-radius: 20px; 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
-    max-width: 600px; 
+    padding: 1rem 1.5rem;
+    background: inherit; /* Matches the parent background */
+    border-radius: 20px;
+    box-shadow: none; /* Remove shadow for blending */
+    max-width: 600px;
     width: 100%;
     margin: 0 auto;
-    height: 220px; 
+    height: 220px;
     box-sizing: border-box;
     transition: background 0.3s, color 0.3s;
 }
 
 /* Dark mode styles for search module */
 body.dark-mode .search-module {
-    background: #444444;  /* Dark background for search module in dark mode */
-    color: #f4f1e1;  /* Light text for dark mode */
+    background: #353535; /* Fully black background */
+    color: #f4f1e1; /* Keep light text for readability */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Optional subtle border for visibility */
 }
 
 /* Header text styling */
 h1 {
-    font-size: 2.2rem;  
-    margin-bottom: 1rem; 
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
     background: linear-gradient(45deg, #dee2e6, #ced4da);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
+    color: #000000; /* Default black color for light mode */
+}
+
+/* Dark mode header text styling */
+body.dark-mode h1 {
+    color: #f4f1e1; /* White text in dark mode */
 }
 
 /* Search box styling */
 .search-box {
     display: flex;
-    gap: 8px; 
-    background: white;
-    padding: 0.4rem;  
-    border-radius: 18px; 
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05); 
+    gap: 8px;
+    background: #ffffff;
+    padding: 0.4rem;
+    border-radius: 18px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.00);
     width: 100%; /* Ensure it doesn't overflow */
     box-sizing: border-box; /* Prevent overflow */
 }
 
 /* Dark mode styles for search box */
 body.dark-mode .search-box {
-    background: #444444;  /* Dark background for search box */
+    background: #353535; /* Very dark background for search box */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); /* Tactile inner shadow */
 }
 
-input[type="text"] {
+/* Text input styling */
+.search-box input[type="text"] {
     flex: 1;
-    padding: 10px 18px; 
+    padding: 10px 18px;
     border: 2px solid #e0e0e0;
     border-radius: 15px;
-    font-size: 0.95rem; 
+    font-size: 0.95rem;
     transition: all 0.3s ease;
+    color: #000000; /* Black text for light mode */
 }
 
 /* Dark mode styles for input field */
-body.dark-mode input[type="text"] {
-    background: #b59b7d;  /* Lighter sepia background for input */
-    color: #f4f1e1;  /* Light text */
-    border: 2px solid #a88d6a;  /* Slightly darker sepia border */
+body.dark-mode .search-box input[type="text"] {
+    background: #222222; /* Darker background for input */
+    color: #f4f1e1; /* Light text */
+    border: 2px solid #444444; /* Subtle border */
 }
 
 button {
-    padding: 10px 18px; 
+    padding: 10px 18px;
     cursor: pointer;
     background: linear-gradient(45deg, #dee2e6, #ced4da);
     color: #495057;
     border: none;
     border-radius: 15px;
-    font-size: 0.95rem; 
+    font-size: 0.95rem;
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
 /* Dark mode styles for button */
 body.dark-mode button {
-    background: linear-gradient(45deg, #8e7b67, #7d6f55); /* Softer sepia gradient */
+    background: linear-gradient(45deg, #333333, #444444); /* Dark gradient */
     color: #f4f1e1;
 }
 
 body.dark-mode button:hover {
-    background: linear-gradient(45deg, #7a6a56, #a88d6a); /* Slightly lighter hover */
+    background: linear-gradient(45deg, #555555, #666666); /* Lighter dark hover */
 }
 
 /* Results container */
 .results-module {
     flex: 1;
-    max-width: 700px;  
+    max-width: 700px;
     margin: 0 auto;
     width: 100%;
     display: grid;
-    gap: 0.8rem; 
+    gap: 0.8rem;
     box-sizing: border-box;
     overflow: hidden; /* Prevent overflow of content */
 }
 
 /* Dark mode styles for result items */
 body.dark-mode .result-item {
-    background: #444444;  /* Dark background for results in dark mode */
+    background: #353535; /* Very dark background for results */
     color: #f4f1e1;
-    border: 1px solid #7d6f55; /* Lighter sepia border for results */
-    padding: 1rem;  /* Add padding to ensure content is inside the item */
+    border: 1px solid #444444; /* Subtle border for results */
+    padding: 1rem; /* Add padding to ensure content is inside the item */
+    border-radius: 20px;
     box-sizing: border-box; /* Ensure box sizing doesn't cause overflow */
-    overflow: hidden; /* Prevent overflow from the text or elements */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Subtle outer shadow */
 }
 
 /* Content module */
 .content-module {
     background: rgba(255, 255, 255, 0.95);
-    padding: 1.5rem; 
-    border-radius: 20px; 
+    padding: 1.5rem;
+    border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Dark mode styles for content module */
 body.dark-mode .content-module {
-    background: #444444; /* Dark background for content in dark mode */
+    background: #222222; /* Slightly darker background for content in dark mode */
+    border: 1px solid #444444;
 }
 
 /* Loading and error styles */
 .loading {
     text-align: center;
-    padding: 1.5rem; 
+    padding: 1.5rem;
     color: white;
-    font-size: 1rem; 
+    font-size: 1rem;
     font-weight: 600;
 }
 
 .error {
     background: rgba(255, 255, 255, 0.95);
     color: #d63031;
-    padding: 0.8rem; 
+    padding: 0.8rem;
     border-radius: 18px;
     text-align: center;
     font-weight: 600;
@@ -190,18 +210,18 @@ body.dark-mode .content-module {
 
 /* Link styles */
 a {
-    color: #007bff;  /* Default blue color */
+    color: #007bff; /* Default blue color */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 /* Dark mode link styles */
 body.dark-mode a {
-    color: #8fbc8f;  /* Softer greenish color for better contrast in dark mode */
+    color: #00bcd4; /* Brighter cyan for links */
 }
 
 body.dark-mode a:hover {
-    color: #ffcc00;  /* A soft yellow on hover */
+    color: #ff9800; /* Orange for hover state */
 }
 
 /* Media query for responsive layout */
